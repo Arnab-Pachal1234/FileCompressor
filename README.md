@@ -1,55 +1,173 @@
-# 📦 File Compressor using Huffman Encoding
+# 📦 File & Image Compressor in Java
 
-A lightweight, fast, and lossless **file compressor** built using the **Huffman Encoding algorithm**. This tool compresses plain text files by encoding frequent characters with shorter binary codes, reducing storage size without losing any data.
+### Huffman (Text - Lossless) + JPEG-Based (Image - Lossy)
 
----
+A complete compression system built from scratch in **Java**,
+implementing both:
 
-## 🚀 Features
+-   📝 **Lossless Text Compression using Huffman Encoding**
+-   🖼️ **Lossy Image Compression inspired by JPEG algorithm**
 
-- ⚡ **Fast compression & decompression**
-- 🔒 **Lossless**: 100% data integrity
-- 📊 Compression statistics (size before/after, ratio)
-- 🧠 Huffman Tree built from input file frequencies
-- 💻 Simple command-line interface
-- 🧪 Works with any plain text file (`.txt`)
+This project demonstrates deep understanding of: - Data Structures -
+Frequency-domain transformations - Entropy encoding - Bit-level file
+handling - Compression theory
 
----
+------------------------------------------------------------------------
 
-## 🧠 How Huffman Encoding Works
+# 🚀 Features
 
-1. Count character frequencies in the file
-2. Build a binary tree (Huffman Tree) using a min-heap
-3. Assign shorter binary codes to more frequent characters
-4. Encode the file using these codes
-5. Store encoded data + Huffman Tree (for decoding)
+## 📝 Text Compression (Huffman Encoding)
 
----
+-   ⚡ Fast compression & decompression
+-   🔒 100% Lossless
+-   🧠 Automatic frequency analysis
+-   🌳 Custom Huffman Tree implementation
+-   📦 Binary encoding with Bit-level writing
+-   📊 Compression ratio calculation
 
-## 📁 File Structure
+------------------------------------------------------------------------
 
-HUFFMANENCODING/
-├── Encoder.java # Compresses the input text using Huffman Encoding
-├── Decoder.java # Decompresses the encoded file back to original
-├── example.txt # Input file to be compressed
-├── decompressed.txt # Output file after decompression
-└── .gitignore # Git ignored files (e.g., .class, .bin)
+## 🖼️ Image Compression (JPEG-Based Implementation)
 
-✅ Features
+-   🎨 RGB → YCbCr conversion
+-   📦 8×8 Block processing
+-   🔄 DCT (Discrete Cosine Transform)
+-   📉 Quantization
+-   🧭 Zig-Zag scanning
+-   🔢 Run-Length Encoding (Zero compression)
+-   🧠 Huffman Encoding
+-   🔁 Full decompression pipeline (IDCT supported)
 
-Lossless text file compression using Huffman Coding
+------------------------------------------------------------------------
 
-Efficient frequency table generation and tree building
+# 📁 Project Structure
 
-Encodes characters using optimal bit-lengths
+COMPRESSION_PROJECT/ │ ├── HuffmanEncoding/ │ ├── Encoder.java │ ├──
+Decoder.java │ ├── example.txt │ └── decompressed.txt │ ├──
+Image_compressor/ │ ├── utils/ │ │ ├── BitReader.java │ │ ├──
+BitWriter.java │ │ ├── Block.java │ │ ├── ColorSpace.java │ │ ├──
+DCTMath.java │ │ ├── IDCTMath.java │ │ ├── Quantizer.java │ │ ├──
+ZigZagScanner.java │ │ ├── RunLengthEncoder.java │ │ ├──
+HuffmanEncoder.java │ │ └── JpegEncoder.java │ │ │ ├── Main.java │ └──
+.gitignore │ └── README.md
 
-Decompresses accurately to match original text
+------------------------------------------------------------------------
 
-Easy to run from the command line
+# 🧠 Text Compression -- How Huffman Encoding Works
 
-👨‍💻 Author
+1️⃣ Count frequency of each character\
+2️⃣ Build Min-Heap (Priority Queue)\
+3️⃣ Construct Huffman Tree\
+4️⃣ Generate prefix-free binary codes\
+5️⃣ Encode file into compressed binary\
+6️⃣ Decode using stored tree
 
-Arnab Pachal
-📧 ap.23cs8031@nitdgp.ac.in
+More frequent characters get shorter codes → Reduced average bit length.
 
-🌐 GitHub - Arnab-pachal
-📝 License
+------------------------------------------------------------------------
+
+# 🖼️ Image Compression -- JPEG Pipeline Implemented
+
+### 1️⃣ Color Space Conversion
+
+Convert RGB → YCbCr\
+(Y = Luminance, Cb/Cr = Chrominance)
+
+------------------------------------------------------------------------
+
+### 2️⃣ 8×8 Block Splitting
+
+Image divided into fixed-size blocks.
+
+------------------------------------------------------------------------
+
+### 3️⃣ Discrete Cosine Transform (DCT)
+
+Transforms spatial pixels into frequency coefficients.
+
+------------------------------------------------------------------------
+
+### 4️⃣ Quantization
+
+Reduces high-frequency components (lossy stage).
+
+------------------------------------------------------------------------
+
+### 5️⃣ Zig-Zag Scanning
+
+Reorders 8×8 matrix into 1D array (low frequency first).
+
+------------------------------------------------------------------------
+
+### 6️⃣ Run-Length Encoding (RLE)
+
+Compress consecutive zeros: (ZeroCount, Value)
+
+------------------------------------------------------------------------
+
+### 7️⃣ Huffman Encoding
+
+Final entropy compression stage.
+
+------------------------------------------------------------------------
+
+### 8️⃣ Decompression Pipeline
+
+-   Huffman Decode
+-   RLE Decode
+-   Dequantization
+-   IDCT
+-   YCbCr → RGB conversion
+
+------------------------------------------------------------------------
+
+# ▶️ How to Run
+
+## 📝 Text Compression
+
+javac Encoder.java Decoder.java\
+java Encoder example.txt\
+java Decoder compressed.bin
+
+------------------------------------------------------------------------
+
+## 🖼️ Image Compression
+
+javac Main.java utils/\*.java\
+java Main input.jpg
+
+------------------------------------------------------------------------
+
+# 🛠️ Technologies Used
+
+-   Java
+-   Priority Queue (Min Heap)
+-   Binary Tree
+-   Matrix Transformations
+-   Discrete Cosine Transform
+-   Run-Length Encoding
+-   Huffman Coding
+-   Bitwise File Handling
+
+------------------------------------------------------------------------
+
+# 🎯 Key Concepts Demonstrated
+
+-   Lossless vs Lossy Compression
+-   Frequency-domain transformation
+-   Entropy encoding
+-   Image signal processing
+-   Bit-level I/O
+-   Algorithm optimization
+
+------------------------------------------------------------------------
+
+# 👨‍💻 Author
+
+Arnab Pachal\
+📧 ap.23cs8031@nitdgp.ac.in\
+🌐 https://github.com/Arnab-pachal
+
+------------------------------------------------------------------------
+
+⭐ If you found this project useful, consider giving it a star!
