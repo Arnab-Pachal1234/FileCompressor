@@ -34,4 +34,19 @@ public class ColorSpace
         double ans = 0.5 * r - 0.418688 * g - 0.081312 * b;
         return ans;
        }
+       public static int toRGB(double y, double cb, double cr) {
+    double yVal = y + 128.0;
+
+    int r = (int) Math.round(yVal + 1.402 * cr);
+    int g = (int) Math.round(yVal - 0.344136 * cb - 0.714136 * cr);
+    int b = (int) Math.round(yVal + 1.772 * cb);
+    
+
+    
+    r = Math.max(0, Math.min(255, r));
+    g = Math.max(0, Math.min(255, g));
+    b = Math.max(0, Math.min(255, b));
+
+    return (255 << 24) | (r << 16) | (g << 8) | b;
+}
 }
