@@ -34,15 +34,16 @@ public class ColorSpace
         double ans = 0.5 * r - 0.418688 * g - 0.081312 * b;
         return ans;
        }
-       public static int toRGB(double y, double cb, double cr) {
-    double yVal = y + 128.0;
-
-    int r = (int) Math.round(yVal + 1.402 * cr);
-    int g = (int) Math.round(yVal - 0.344136 * cb - 0.714136 * cr);
-    int b = (int) Math.round(yVal + 1.772 * cb);
+    public static int toRGB(double y, double cb, double cr) {
+    // Re-center the Luminance (Y) channel
+    double Y = y + 128.0; 
     
+    // High-precision JPEG conversion constants
+    int r = (int) Math.round(Y + 1.402 * cr);
+    int g = (int) Math.round(Y - 0.344136 * cb - 0.714136 * cr);
+    int b = (int) Math.round(Y + 1.772 * cb);
 
-    
+    // CRITICAL: Clamp to prevent bit-overflow (the source of neon colors)
     r = Math.max(0, Math.min(255, r));
     g = Math.max(0, Math.min(255, g));
     b = Math.max(0, Math.min(255, b));
