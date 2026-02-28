@@ -32,4 +32,14 @@ public class ZigZagScanner {
         
         return flatArray;
     }
+    public static int[][] unflatten(int[] flatArray) {
+        int[][] block = new int[8][8];
+        for (int i = 0; i < 64; i++) {
+            int index = ZIGZAG_ORDER[i];
+            int row = index / 8;
+            int col = index % 8;
+            block[row][col] = flatArray[i];
+        }
+        return block;
+    }
 }

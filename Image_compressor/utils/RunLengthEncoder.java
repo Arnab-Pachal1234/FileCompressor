@@ -65,4 +65,22 @@ public class RunLengthEncoder {
 
         return encodedData;
     }
+    public static int[] decode(List<RLEPair> rleData) {
+        int[] flatBlock = new int[64];
+        int index = 0;
+
+        for (RLEPair pair : rleData) {
+            if (pair.run == 0 && pair.value == 0) {
+                break; // EOB: The rest of the array remains 0
+            }
+            // Skip forward by the number of zeros
+            index += pair.run;
+            // Place the non-zero value
+            if (index < 64) {
+                flatBlock[index] = pair.value;
+                index++;
+            }
+        }
+        return flatBlock;
+    }
 }

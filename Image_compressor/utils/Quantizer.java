@@ -31,4 +31,14 @@ public class Quantizer {
         
         return quantized;
     }
+    public static Block dequantize(int[][] quantizedBlock) {
+        Block dequantized = new Block();
+        for (int u = 0; u < 8; u++) {
+            for (int v = 0; v < 8; v++) {
+                // Multiply back by the exact same matrix
+                dequantized.data[u][v] = quantizedBlock[u][v] * LUMINANCE_MATRIX[u][v];
+            }
+        }
+        return dequantized;
+    }
 }
