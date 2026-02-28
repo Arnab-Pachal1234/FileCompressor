@@ -1,5 +1,6 @@
 package utils;
 import java.util.*;
+
 public  class JpegEncoder
 {
     public List<Block> splitIntoLumianceBlocks(int[][] image) {
@@ -16,7 +17,7 @@ public  class JpegEncoder
                         int pixelX = i + x;
                         int pixelY = j + y;
                         if (pixelX < height && pixelY < width) {
-                            block.data[x][y] = colorSpace.getLumiance(image[pixelX][pixelY]);
+                           block.data[x][y] = ColorSpace.getLumiance(image[pixelX][pixelY]);
                         } else {
                             block.data[x][y] = 0; // Padding for out-of-bounds
                         }
@@ -25,5 +26,6 @@ public  class JpegEncoder
                 yblock.add(block);
             }
         }
+        return yblock;
     }
 }

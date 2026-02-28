@@ -1,6 +1,6 @@
 package utils;
 import java.util.*;
-public class colorSpace 
+public class ColorSpace 
 {
     public static double getLumiance(int rgb)
     {
